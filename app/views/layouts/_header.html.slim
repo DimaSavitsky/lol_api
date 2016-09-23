@@ -1,0 +1,20 @@
+.class-name-in-header
+  - if current_user
+    .email
+      = current_user.email
+    .links
+      span.logout-link
+        = link_to 'Log out', destroy_user_session_path, method: :delete
+      .navigation-links
+        - unless params[:controller] == 'homes'
+          span.home
+            = link_to 'Home', home_path
+        - unless params[:action] == 'status'
+          span.status
+          = link_to 'status', status_api_request_path
+  - else
+    .links
+      span.register-link
+        = link_to 'Register', new_user_registration_path
+      span.login-link
+        = link_to 'Login', new_user_session_path
